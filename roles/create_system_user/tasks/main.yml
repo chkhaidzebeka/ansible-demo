@@ -1,0 +1,7 @@
+---
+- name: "Create system user for Node.js app"
+  user:
+    name: "{{ nodejs_app_user }}"
+    group: "{{ nodejs_app_group }}"
+    createhome: yes
+

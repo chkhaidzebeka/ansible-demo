@@ -1,0 +1,16 @@
+---
+packages:
+  - git
+  - nodejs
+  - nginx
+
+repo: "https://github.com/fropa/nodejs-hello"
+temp_dir: "/tmp/testing"
+    
+nodejs_app_user: "nodejsuser"
+nodejs_app_group: "nodejsgroup"
+
+pm2_app_name: "my_nodejs_app"
+
+nginx_config_src: "./nginx.conf"
+nginx_config_dest: "/etc/nginx/conf.d/my_app.conf"

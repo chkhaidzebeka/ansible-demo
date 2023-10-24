@@ -1,0 +1,5 @@
+---
+- name: "Start Node.js app with PM2"
+  become: yes
+  become_user: "{{ nodejs_app_user }}"
+  shell: /usr/local/bin/pm2 start "{{ temp_dir }}/app.js" --name "{{ pm2_app_name }}" --watch -f

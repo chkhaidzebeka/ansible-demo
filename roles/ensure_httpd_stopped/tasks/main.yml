@@ -1,0 +1,6 @@
+---
+- name: Ensure httpd is not active
+  service:
+    name: httpd
+    state: stopped
+

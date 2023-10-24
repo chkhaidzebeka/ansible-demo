@@ -1,0 +1,8 @@
+---
+- name: Copy Nginx configuration file
+  copy:
+    src: "{{ nginx_config_src }}"
+    dest: "{{ nginx_config_dest }}"
+    owner: root
+    group: root
+    mode: 0644

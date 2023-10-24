@@ -1,0 +1,9 @@
+---
+- name: Start Nginx service
+  become: yes
+  become_user: root
+  service:
+    name: nginx
+    state: started
+    enabled: yes
+

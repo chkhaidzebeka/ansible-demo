@@ -1,0 +1,53 @@
+---
+- name: Installer
+  hosts: all
+  gather_facts: yes
+
+  vars_files:
+    - ./vars.yml
+
+  tasks:
+    - name: "Install required packages"
+      yum:
+        name: "{{ item }}"
+        state: installed
+      with_items: "{{ packages }}"
+
+    - name: "Clone Git repo"
+      git:
+        repo: "{{ repo }}"
+        dest: "{{ temp_dir }}"
+
+    - name: "Create system user for Node.js app"
+      user:
+        name: "{{ nodejs_app_user }}"
+        group: "{{ nodejs_app_group }}"
+        createhome: yes
+
+    - name: "Start Node.js app with PM2"
+      become: yes
+      become_user: "{{ nodejs_app_user }}"
+      shell: /usr/local/bin/pm2 start "{{ temp_dir }}/app.js" --name "{{ pm2_app_name }}" --watch -f
+
+    - name: Copy Nginx configuration file
+      copy:
+        src: "{{ nginx_config_src }}"
+        dest: "{{ nginx_config_dest }}"
+        owner: root
+        group: root
+        mode: 0644
+
+    - name: Ensure httpd is not active
+      service:
+        name: httpd
+        state: stopped
+
+
+    - name: Start Nginx service
+      become: yes
+      become_user: root
+      service:
+        name: nginx
+        state: started
+        enabled: yes
+

@@ -1,0 +1,6 @@
+---
+- name: "Clone Git repo"
+  git:
+    repo: "{{ repo }}"
+    dest: "{{ temp_dir }}"
+

@@ -12,6 +12,11 @@
         name: "{{ item }}"
         state: installed
       with_items: "{{ packages }}"
+    
+    - name: Install pm2 using npm
+      npm:
+        name: pm2
+        global: yes
 
     - name: "Clone Git repo"
       git:

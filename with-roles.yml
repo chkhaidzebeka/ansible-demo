@@ -8,6 +8,7 @@
 
   roles:
     - install_packages
+    - install_mp2
     - clone_git_repo
     - create_system_user
     - start_nodejs_app

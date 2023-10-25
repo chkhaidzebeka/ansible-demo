@@ -1,0 +1,5 @@
+---
+- name: "installing mp2 using npm"
+  npm:
+    name: pm2
+    global: yes
